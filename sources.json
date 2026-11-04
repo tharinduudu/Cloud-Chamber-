@@ -1,0 +1,11 @@
+{
+  "status": "Concept; dimension-based models, not supplier CAD or tested hardware",
+  "parts": [
+    {"part":"TEC2-25408","quantity":4,"body_mm":[40,40,6.4],"status":"nominal; supplier variation and Amazon stock unresolved","source":"https://www.astesj.com/publications/ASTESJ_040533.pdf"},
+    {"part":"40x120 aluminum water block","quantity":2,"body_mm":[40,120,12],"status":"ABRA HS-WCB-40X120 supplier envelope; CLYXGS-class Amazon alternative requires verification","barb_od_mm":10,"source":"https://abra-electronics.com/thermal-management/heat-sinks/hs-wcb-40x120-40x120mm-aluminum-water-cooling-block.html"},
+    {"part":"Syscooling AS240","quantity":1,"body_mm":[269,120,36],"material":"aluminum","ports":"G1/4","status":"manufacturer dimensions; port placement approximate","source":"https://www.syscooling.com/?list_50/273.html="},
+    {"part":"ARCTIC P12 PWM PST ACFAN00120A","quantity":2,"body_mm":[120,120,25],"status":"manufacturer envelope; blades illustrative","source":"https://www.arctic.de/en/P12-PWM-PST/ACFAN00120A"},
+    {"part":"Syscooling SC-300T","quantity":1,"body_mm":[66,56,86],"status":"retail variant, excludes ports/base; supplier variants differ","source":"https://www.walmart.com/ip/14396666417","manufacturer_family":"https://www.syscooling.com/?list_49/229.html="},
+    {"part":"Jesverty SPS-3010 class supply","quantity":4,"status":"sourcing candidate, not dimensionally modeled; one independent current-limited channel per TEC"}
+  ]
+}
