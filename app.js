@@ -2,14 +2,14 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/OrbitControls.js';
 const $=id=>document.getElementById(id);
 const parts=[
- ['housing','Custom acrylic housing','160 × 160 × 250 mm overall; 4 mm panels. Vented outer housing only. Glass contains the alcohol vapor. Panel cut list is in Design.','Custom fabrication',''],
+ ['housing','Custom acrylic housing','200 × 200 × 260 mm overall; 4 mm panels. Vented outer housing only. Glass contains the alcohol vapor. Panel cut list is in Design.','Custom fabrication',''],
  ['cooler','2 × aluminum water blocks','CLYXGS 40 × 120 × 12 mm class; two blocks, each beneath two TECs. ABRA HS-WCB-40X120 documents this envelope and 10 mm barbs. Clamping and port geometry must match the purchased variant.','Supplier-sized body; fittings approximate','CLYXGS water cooling block 40 120 12'],
- ['tec','4 × TEC2-25408 Peltier modules','Four two-stage modules in a 2 × 2 array, 48 mm center spacing. Each nominally 40 × 40 × 6.4 mm. All cold faces point upward. Match thicknesses and qualify each module under load.','Amazon stock not verified','TEC2-25408 two stage peltier'],
+ ['tec','4 × TEC2-25408 Peltier modules','Four two-stage modules in a 2 × 2 array, 76 mm center spacing. Each nominally 40 × 40 × 6.4 mm. All cold faces point upward. Match thicknesses and qualify each module under load.','Amazon stock not verified','TEC2-25408 two stage peltier'],
  ['insulation','Thermal insulation','Closed-cell foam surrounds the TEC and covers the unused underside of the plate. Keep it outside the vapor chamber.','Cut to fit','closed cell foam insulation sheet'],
- ['plate','Copper cold plate','100 × 100 × 3 mm. Thin, IPA-compatible dark finish on top; no thick insulating layer. Contact probes sit near the center and at the hot interface.','Off the shelf','copper plate 100mm 100mm 3mm'],
- ['gasket','Chamber gasket','Thin PTFE gasket, 80 mm square outside, 70 mm square opening. Glass hood rests on it. Vapor-limiting seal, not a pressurized vessel.','Cut to fit','PTFE sheet 0.5mm'],
- ['glass','Glass vapor hood','80 × 80 × 90 mm outside; nominal 3 mm walls, open bottom. Fabricator must qualify joints for 99% IPA and temperature cycling. Removable for cleaning and filling.','Custom glass fabrication',''],
- ['felt','Alcohol reservoir','Mechanically retained polyester felt beneath the glass ceiling. Use about 3–5 mL of 99% IPA, without dripping. No acrylic or exposed electrical heater inside.','Cut to fit','polyester felt sheet'],
+ ['plate','Copper cold plate','150 × 150 × 6 mm. The four TEC centers are at (±38, ±38) mm. Thin, IPA-compatible dark finish on top; no thick insulating layer. Contact probes sit near the center and at the hot interface.','Off the shelf','copper plate 150mm 150mm 6mm'],
+ ['gasket','Chamber gasket','Thin PTFE gasket, 140 mm square outside, 130 mm square opening. Glass hood rests on it. Vapor-limiting seal, not a pressurized vessel.','Cut to fit','PTFE sheet 0.5mm'],
+ ['glass','Glass vapor hood','140 × 140 × 90 mm outside; nominal 3 mm walls, open bottom. Fabricator must qualify joints for 99% IPA and temperature cycling. Removable for cleaning and filling.','Custom glass fabrication',''],
+ ['felt','Alcohol reservoir','Mechanically retained polyester felt beneath the glass ceiling. Use enough 99% IPA to wet the larger pad without dripping; start with about 5 mL. No acrylic or exposed electrical heater inside.','Cut to fit','polyester felt sheet'],
  ['light','External side illumination','Small LED flashlight illuminates the thin region above the plate. All power connections stay outside the vapor hood.','Off the shelf','small LED flashlight'],
  ['radiator','Syscooling AS240 radiator','Manufacturer: 269 × 120 × 36 mm, aluminum, G1/4 ports, two 120 mm fans per side. Shown externally so intake and exhaust are unobstructed. Fins and port locations are visual approximations.','Manufacturer-sized envelope','Syscooling AS240 aluminum radiator'],
  ['fans','2 × ARCTIC P12 PWM PST','ARCTIC ACFAN00120A: 120 × 120 × 25 mm each. Two fans on the radiator. Blade and hub profiles are illustrative; mounting envelope follows the manufacturer.','Manufacturer-sized envelope','ARCTIC P12 PWM PST ACFAN00120A'],
@@ -49,16 +49,16 @@ function box(g,w,h,d,x,y,z,mat){const mesh=new THREE.Mesh(new THREE.BoxGeometry(
 function edges(mesh,color=0x63828b){const e=new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry),new THREE.LineBasicMaterial({color,transparent:true,opacity:.45}));mesh.add(e);}
 function rod(g,r,h,x,y,z,mat){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,16),mat);m.position.set(x,y,z);g.add(m);return m;}
 const housing=group('housing',0);
-box(housing,152,4,152,0,30,0,dark);
+box(housing,192,4,192,0,30,0,dark);
 // Lower sides are split to expose broad airflow openings.
-for(const x of [-78,78]){edges(box(housing,4,90,152,x,235,0,clear));for(const z of [-69,69])edges(box(housing,4,156,14,x,112,z,clear));}
-for(const z of [-78,78]){edges(box(housing,160,90,4,0,235,z,clear));for(const x of [-72,72])edges(box(housing,16,156,4,x,112,z,clear));}
-for(const x of [-65,65])for(const z of [-65,65])rod(housing,8,14,x,21,z,dark);
+for(const x of [-98,98]){edges(box(housing,4,90,192,x,245,0,clear));for(const z of [-89,89])edges(box(housing,4,166,14,x,117,z,clear));}
+for(const z of [-98,98]){edges(box(housing,200,90,4,0,245,z,clear));for(const x of [-92,92])edges(box(housing,16,166,4,x,117,z,clear));}
+for(const x of [-85,85])for(const z of [-85,85])rod(housing,8,14,x,21,z,dark);
 const cooler=group('cooler',0);
 // Illustrative cradle supports the blocks from below; no holes in water channels.
-for(const z of [-24,24]){box(cooler,120,3,40,0,166.5,z,dark);for(const x of [-52,52])rod(cooler,4,133,x,98.5,z,metal);}
+for(const z of [-38,38]){box(cooler,120,3,40,0,166.5,z,dark);for(const x of [-52,52])rod(cooler,4,133,x,98.5,z,metal);}
 // Two supplier-sized aluminum blocks, long axis x; two TECs per block.
-for(const z of [-24,24]){box(cooler,120,12,40,0,174,z,metal);for(const dz of [-10,10]){const barb=rod(cooler,5,18,-69,174,z+dz,metal);barb.rotation.z=Math.PI/2;for(const x of [-75,-70,-65]){const rib=rod(cooler,5.5,1.5,x,174,z+dz,metal);rib.rotation.z=Math.PI/2;}}}
+for(const z of [-38,38]){box(cooler,120,12,40,0,174,z,metal);for(const dz of [-10,10]){const barb=rod(cooler,5,18,-69,174,z+dz,metal);barb.rotation.z=Math.PI/2;for(const x of [-75,-70,-65]){const rib=rod(cooler,5.5,1.5,x,174,z+dz,metal);rib.rotation.z=Math.PI/2;}}}
 const radiator=group('radiator',0);for(const y of [37.5,291.5])box(radiator,120,15,36,205,y,0,dark);for(const x of [148,262])box(radiator,6,239,36,x,164.5,0,dark);
 for(let y=48;y<282;y+=3)box(radiator,110,.65,34,205,y,0,metal);
 for(const x of [175,235]){const port=rod(radiator,7,15,x,291,0,metal);}
@@ -71,22 +71,22 @@ for(const x of [-52.5,52.5])for(const dy of [-52.5,52.5]){const screw=new THREE.
 const pump=group('pump',0);box(pump,66,24,56,-135,45,0,dark);box(pump,66,62,56,-135,88,0,clear);box(pump,57,34,47,-135,74,0,new THREE.MeshStandardMaterial({color:0x4c9fbd,transparent:true,opacity:.45}));rod(pump,8,5,-135,121,0,dark);
 const tubing=group('tubing',0);
 function hose(points){const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)));tubing.add(new THREE.Mesh(new THREE.TubeGeometry(curve,80,6.5,12,false),new THREE.MeshPhysicalMaterial({color:0x67b7ce,transparent:true,opacity:.55,roughness:.25})));}
-hose([[-102,58,0],[-89,75,-45],[-95,145,-45],[-78,174,-34]]);
-hose([[-78,174,-14],[-104,174,-14],[-104,174,14],[-78,174,14]]);
-hose([[-78,174,34],[-110,152,72],[105,120,100],[270,220,78],[235,305,0]]);
+hose([[-102,58,0],[-89,75,-45],[-95,145,-45],[-78,174,-48]]);
+hose([[-78,174,-28],[-104,174,-28],[-104,174,28],[-78,174,28]]);
+hose([[-78,174,48],[-110,152,72],[105,120,100],[270,220,78],[235,305,0]]);
 hose([[175,305,0],[120,318,-65],[-145,240,-65],[-170,120,-45],[-168,70,0]]);
 const tec=group('tec',1);const ceramic=new THREE.MeshStandardMaterial({color:0xdee8e7,roughness:.5});
-for(const x of [-24,24])for(const z of [-24,24]){box(tec,40,2,40,x,181,z,ceramic);box(tec,37,2.4,37,x,183.2,z,dark);box(tec,40,2,40,x,185.4,z,ceramic);
+for(const x of [-38,38])for(const z of [-38,38]){box(tec,40,2,40,x,181,z,ceramic);box(tec,37,2.4,37,x,183.2,z,dark);box(tec,40,2,40,x,185.4,z,ceramic);
 for(const offset of [-1,1]){const points=[new THREE.Vector3(x+18,183,z+offset*3),new THREE.Vector3(x+20,183,z+offset*3),new THREE.Vector3(x+20,146,z+offset*3)];tec.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color:offset<0?0xc46e65:0x171e23})));}}
-const ins=group('insulation',1);box(ins,8,6.4,100,0,183.2,0,dark);box(ins,100,6.4,8,0,183.2,0,dark);for(const x of [-47,47])box(ins,6,6.4,100,x,183.2,0,dark);for(const z of [-47,47])box(ins,88,6.4,6,0,183.2,z,dark);
-const plate=group('plate',2);box(plate,100,3,100,0,187.9,0,copper);box(plate,100,.1,100,0,189.45,0,new THREE.MeshStandardMaterial({color:0x080f13,roughness:.95}));
-const gasket=group('gasket',3);for(const x of [-37.5,37.5])box(gasket,5,.5,80,x,189.75,0,ceramic);for(const z of [-37.5,37.5])box(gasket,70,.5,5,0,189.75,z,ceramic);
-const glass=group('glass',4);for(const x of [-38.5,38.5])edges(box(glass,3,87,74,x,233.5,0,glassMat),0x8ad1c6);for(const z of [-38.5,38.5])edges(box(glass,80,87,3,0,233.5,z,glassMat),0x8ad1c6);edges(box(glass,80,3,80,0,278.5,0,glassMat),0x8ad1c6);
-const felt=group('felt',4);box(felt,62,3,62,0,273,0,new THREE.MeshStandardMaterial({color:0xb9b8a4,roughness:1}));
-const light=group('light',3);box(light,8,9,60,48,198,0,dark);box(light,.5,5,52,43.8,198,0,new THREE.MeshBasicMaterial({color:0xe9d9a3}));scene.add(new THREE.PointLight(0x86daca,9000,220));scene.children.at(-1).position.set(40,205,0);
+const ins=group('insulation',1);box(ins,36,6.4,150,0,183.2,0,dark);box(ins,150,6.4,36,0,183.2,0,dark);for(const x of [-66.5,66.5])box(ins,17,6.4,150,x,183.2,0,dark);for(const z of [-66.5,66.5])box(ins,116,6.4,17,0,183.2,z,dark);
+const plate=group('plate',2);box(plate,150,6,150,0,189.4,0,copper);box(plate,150,.1,150,0,192.45,0,new THREE.MeshStandardMaterial({color:0x080f13,roughness:.95}));
+const gasket=group('gasket',3);for(const x of [-67.5,67.5])box(gasket,5,.5,140,x,192.75,0,ceramic);for(const z of [-67.5,67.5])box(gasket,130,.5,5,0,192.75,z,ceramic);
+const glass=group('glass',4);for(const x of [-68.5,68.5])edges(box(glass,3,87,134,x,236.5,0,glassMat),0x8ad1c6);for(const z of [-68.5,68.5])edges(box(glass,140,87,3,0,236.5,z,glassMat),0x8ad1c6);edges(box(glass,140,3,140,0,281.5,0,glassMat),0x8ad1c6);
+const felt=group('felt',4);box(felt,122,3,122,0,276,0,new THREE.MeshStandardMaterial({color:0xb9b8a4,roughness:1}));
+const light=group('light',3);box(light,8,9,100,78,201,0,dark);box(light,.5,5,92,73.8,201,0,new THREE.MeshBasicMaterial({color:0xe9d9a3}));scene.add(new THREE.PointLight(0x86daca,9000,260));scene.children.at(-1).position.set(70,208,0);
 // Track lines illustrate condensation in the central volume; no event-rate claim.
 const tracks=new THREE.Group();model.add(tracks);let elapsed=0;
-for(let i=0;i<12;i++){const points=[];const x=-30+Math.random()*60,z=-30+Math.random()*60;for(let k=0;k<7;k++)points.push(new THREE.Vector3(x+k*2.2,192+Math.sin(k*.6+i)*.9,z+k*.6));const m=new THREE.LineBasicMaterial({color:0xd9f9f3,transparent:true,opacity:0});const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),m);line.userData.phase=i*.57;tracks.add(line);}
+for(let i=0;i<12;i++){const points=[];const x=-55+Math.random()*100,z=-55+Math.random()*100;for(let k=0;k<7;k++)points.push(new THREE.Vector3(x+k*2.2,195+Math.sin(k*.6+i)*.9,z+k*.6));const m=new THREE.LineBasicMaterial({color:0xd9f9f3,transparent:true,opacity:0});const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),m);line.userData.phase=i*.57;tracks.add(line);}
 scene.add(new THREE.HemisphereLight(0xc3e1eb,0x34454a,2));const key=new THREE.DirectionalLight(0xf8eee2,3);key.position.set(150,400,200);scene.add(key);const rim=new THREE.DirectionalLight(0x62bea9,2);rim.position.set(-200,220,-100);scene.add(rim);
 const grid=new THREE.GridHelper(680,34,0x36515f,0x203541);grid.position.y=12;scene.add(grid);
 function visibility(){for(const [id,g]of Object.entries(groups))g.visible=(id!=='housing'||shellVisible)&&(selectedTab!=='assembly'||steps[step][3].includes(id));tracks.visible=selectedTab!=='assembly'&&explosion<.05;$('modeLabel').textContent=(selectedTab==='assembly'?`ASSEMBLY ${step+1}/7`:explosion>.05?'EXPLODED':'ASSEMBLED')+' · mm';}

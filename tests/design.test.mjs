@@ -3,11 +3,24 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 const root=new URL('../',import.meta.url);
 const sources=JSON.parse(await readFile(new URL('sources.json',root),'utf8'));
-test('four TECs fit completely on two blocks and the 100 mm plate',()=>{
- const centers=[-24,24];
+test('four spread-out TECs fit their water blocks and enlarged plate',()=>{
+ const d=sources.design,halfTEC=20,halfBlockLength=60,halfBlockWidth=20;
  assert.equal(sources.parts.find(p=>p.part==='TEC2-25408').quantity,4);
- for(const x of centers)for(const z of centers){assert.ok(Math.abs(x)+20<=50);assert.ok(Math.abs(z)+20<=50);assert.ok(Math.abs(x)+20<=60);}
- assert.equal(48-40,8); // gap between both rows and columns
+ for(const x of d.tec_centers_mm)for(const z of d.tec_centers_mm){
+  assert.ok(Math.abs(x)+halfTEC<=d.plate_mm[0]/2);
+  assert.ok(Math.abs(z)+halfTEC<=d.plate_mm[1]/2);
+  assert.ok(Math.abs(x)+halfTEC<=halfBlockLength);
+  assert.ok(d.water_block_row_centers_mm.some(row=>Math.abs(z-row)+halfTEC<=halfBlockWidth));
+ }
+ assert.equal(halfBlockLength-Math.max(...d.tec_centers_mm)-halfTEC,2);
+});
+test('larger hood and gasket fit the plate and custom housing',()=>{
+ const d=sources.design;
+ assert.ok(d.clear_floor_mm[0]<d.hood_mm[0]);
+ assert.ok(d.hood_mm[0]<d.plate_mm[0]);assert.ok(d.plate_mm[0]<d.housing_mm[0]-8);
+ assert.equal(d.plate_mm[2],6);
+ const area=d.clear_floor_mm.reduce((a,b)=>a*b),oldArea=d.previous_clear_floor_mm.reduce((a,b)=>a*b);
+ assert.ok(Math.abs(area/oldArea-3.44898)<0.00001);
 });
 test('published radiator and fans are represented consistently',()=>{
  assert.deepEqual(sources.parts.find(p=>p.part==='Syscooling AS240').body_mm,[269,120,36]);

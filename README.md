@@ -21,18 +21,28 @@ after download. Opening index.html directly as a file may prevent module loading
 
 ## Four-Peltier water-cooled design
 
-Four TEC2-25408 two-stage modules are arranged in a 2 × 2 array on 48 mm centers.
+Four TEC2-25408 two-stage modules are arranged in a 2 × 2 array on 76 mm centers.
 Each nominal module is 40 × 40 × 6.4 mm; two modules sit on each of two
-40 × 120 × 12 mm aluminum water blocks. A 100 × 100 × 3 mm copper plate
+40 × 120 × 12 mm aluminum water blocks. A 150 × 150 × 6 mm copper plate
 spans their cold faces. The copper plate is outside the coolant loop.
 
-The 160 × 160 × 250 mm custom acrylic housing surrounds a removable glass vapor
-hood, 80 × 80 × 90 mm outside. Concentrated IPA can craze acrylic, so the
+The 200 × 200 × 260 mm custom acrylic housing surrounds a removable glass vapor
+hood, 140 × 140 × 90 mm outside. Concentrated IPA can craze acrylic, so the
 acrylic remains outside the vapor volume. The wet loop uses aluminum blocks
 and an aluminum radiator with compatible inhibited coolant and fittings.
 Never put IPA in the cooling loop. Confirm the wetted metallurgy of fittings,
 pump and radiator; avoid adding copper/brass PC cooling parts to this loop
 without supplier approval of the complete material/coolant combination.
+
+### Larger area
+
+The clear viewing floor is now 130 × 130 mm (169 cm²), up from 70 × 70 mm
+(49 cm²): 3.45 times the geometric area. The 150 mm plate uses 6 mm copper to
+help spread heat from four TECs at (±38, ±38) mm. This increases plate thermal
+mass by 4.5 times relative to the previous 100 × 100 × 3 mm plate. Cooldown
+time and actual uniform cold area require measurement. Each 40 mm module has
+2 mm end margin on its 120 mm water block; verify the entire flat face and
+edge condition before assembly. Block row centers are also ±38 mm.
 
 ### Identifiable parts
 
@@ -62,14 +72,14 @@ bleeding and leak testing; never run the pump dry.
 ### Thermal and electrical sizing
 
 At the illustrative 8 V / 4 A per module, total electrical input is 128 W.
-Assuming 5–15 W total chamber cold load and about 4 W pump heat gives roughly
-137–147 W rejected to room air. To keep the TEC hot interfaces near 30 °C
+Assuming 10–25 W total chamber cold load and about 4 W pump heat gives roughly
+142–157 W rejected to room air. To keep the TEC hot interfaces near 30 °C
 at 22 °C room temperature requires an overall effective resistance of about
-8/145 = 0.055 K/W, including block interfaces. AS240 capacity at that small
+8/150 = 0.053 K/W, including block interfaces. AS240 capacity at that small
 temperature difference has not been validated. Larger radiators or lower
 TEC input may be required after testing.
 
-At 145 W, approximate coolant rise is 4.2 °C at 0.5 L/min and 2.1 °C at
+At 150 W, approximate coolant rise is 4.3 °C at 0.5 L/min and 2.2 °C at
 1 L/min. Pump free flow is not installed flow. Measure real flow, coolant
 in/out temperatures, all hot-side interfaces and the active floor.
 Across a 58 K lift, each TEC's loaded curve must support its actual cold load.
@@ -94,7 +104,8 @@ for IPA and thermal cycling. The nominal hood panels are not a fabrication relea
 ### Qualification and budget
 
 The target is −25 to −30 °C over the active floor at 22 °C ambient. Require
-stable ≤ −25 °C operation for 15 minutes with alcohol present after leak and
+stable ≤ −25 °C operation at the center, four quadrant centers and four
+near-corner points of the enlarged viewing floor for 15 minutes with alcohol present after leak and
 dry cooling tests. This has not been built or thermally validated. Tracks are
 illustrative; the model does not compute supersaturation, nucleation or event rates.
 
