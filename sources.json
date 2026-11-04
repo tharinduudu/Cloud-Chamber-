@@ -108,6 +108,24 @@
     "previous_clear_floor_mm": [
       70,
       70
-    ]
+    ],
+    "felt": {
+      "strip_long_mm": [
+        134,
+        15,
+        3
+      ],
+      "strip_short_mm": [
+        128,
+        15,
+        3
+      ],
+      "quantity_each": 2,
+      "clear_top_aperture_mm": [
+        128,
+        128
+      ],
+      "status": "custom cut felt; perimeter retention to be qualified"
+    }
   }
 }

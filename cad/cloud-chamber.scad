@@ -15,7 +15,10 @@ color("lightblue",.18){
  for(z=[-68.5,68.5])block(140,87,3,0,236.5+4*sep,z);
  block(140,3,140,0,281.5+4*sep,0);
 }
-color("beige")block(122,3,122,0,276+4*sep,0);
+color("beige"){
+ for(x=[-65.5,65.5])block(3,15,134,x,269.5+4*sep,0);
+ for(z=[-65.5,65.5])block(128,15,3,0,269.5+4*sep,z);
+}
 color("lightblue",.1){
  for(x=[-98,98]){block(4,90,192,x,245,0);for(z=[-89,89])block(4,166,14,x,117,z);}
  for(z=[-98,98]){block(200,90,4,0,245,z);for(x=[-92,92])block(16,166,4,x,117,z);}

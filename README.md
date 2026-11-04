@@ -13,6 +13,7 @@ after download. Opening index.html directly as a file may prevent module loading
 ## Explore
 
 - Drag to orbit; scroll to zoom. Click a component to inspect it.
+- Top view looks straight through the clear roof at the cold floor.
 - Explode separates the layers; Acrylic shell toggles the outer housing.
 - Assembly provides seven stages with a parts sequence and checks.
 - Parts contains Amazon searches and sourcing status.
@@ -33,6 +34,18 @@ and an aluminum radiator with compatible inhibited coolant and fittings.
 Never put IPA in the cooling loop. Confirm the wetted metallurgy of fittings,
 pump and radiator; avoid adding copper/brass PC cooling parts to this loop
 without supplier approval of the complete material/coolant combination.
+
+### Clear roof for viewing from above
+
+The ceiling felt pad has been replaced by four vertical felt strips on the upper
+inside glass walls: two 134 × 15 × 3 mm strips and two 128 × 15 × 3 mm strips.
+This leaves a 128 × 128 mm clear aperture beneath the transparent roof. Keep
+mechanical retaining clips at the perimeter; clip details and material
+compatibility still require verification. The reservoir surface area is smaller
+than the former ceiling pad; alcohol distribution and track performance need
+requalification. Do not block the center with a heater or retaining plate.
+The Top view button resets the exploded layout and stops automatic rotation,
+then points the camera down into the assembled chamber. The glass remains fitted.
 
 ### Larger area
 

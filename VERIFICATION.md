@@ -21,3 +21,9 @@ floor, 76 mm TEC center spacing. This area is not a validated cold-area claim.
 Browser preview refreshed and visually checked for the larger hood, plate and
 housing; the inspection panel reports 130 × 130 mm floor and 200 × 200 × 260 mm
 housing. HTTP preview returns 200. Geometry/asset checks: 4/4 passed.
+
+Top-view revision: replaced the ceiling pad with four vertical perimeter strips,
+leaving a 128 × 128 mm roof aperture. Reservoir evaporation has not been tested.
+Top-view button was checked in the browser: the assembled camera looks through
+the fitted roof and the perimeter felt leaves the cold floor visible. Five
+automated checks pass, including the clear aperture calculation.

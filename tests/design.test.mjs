@@ -29,3 +29,11 @@ test('published radiator and fans are represented consistently',()=>{
 test('local browser module imports resolve without network dependencies',async()=>{
  for(const file of ['app.js','vendor/OrbitControls.js','vendor/three.module.js']){const text=await readFile(new URL(file,root),'utf8');for(const m of text.matchAll(/from\s+['"]([^'"]+)['"]/g)){if(m[1]==='three')continue;if(m[1].startsWith('.'))await readFile(new URL(m[1],new URL(file,root)));}}
 });
+
+test('perimeter reservoir leaves the center of the roof unobstructed',()=>{
+ const f=sources.design.felt;
+ assert.equal(f.quantity_each*2,4);
+ assert.equal(sources.design.hood_mm[0]-2*3-2*f.strip_long_mm[2],128);
+ assert.deepEqual(f.clear_top_aperture_mm,[128,128]);
+ assert.equal(f.strip_short_mm[0],128);
+});
